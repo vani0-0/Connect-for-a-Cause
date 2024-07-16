@@ -183,7 +183,7 @@ const Register = () => {
             </div>
           </div>
         </form>
-      </Form>
+      </Form >
     </>
   );
 };

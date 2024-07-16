@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const MessagesGroup = () => {
   return (
-    <ContentLayout title="Group Messages">
+    <ContentLayout title="Messages">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

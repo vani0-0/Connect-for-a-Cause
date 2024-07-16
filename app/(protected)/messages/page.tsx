@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const DirectMessages = () => {
   return (
-    <ContentLayout title="Direct Messages">
+    <ContentLayout title="Messages">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

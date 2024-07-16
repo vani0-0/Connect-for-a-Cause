@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const AllProjects = () => {
   return (
-    <ContentLayout title="All Projects">
+    <ContentLayout title="Projects">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
