@@ -14,6 +14,7 @@ model User {
   email            String    @unique
   password         String
   role             String
+  verified         Boolean   @default(false)
   createdAt        DateTime  @default(now()) @map(name: "created_at")
   updatedAt        DateTime  @updatedAt @map(name: "updated_at")
   sentMessages     Message[] @relation("SentMessages")
@@ -22,14 +23,12 @@ model User {
 }
 
 model Profile {
-  id            Int      @id @default(autoincrement())
-  bio           String?
-  userId        Int      @unique
-  personalIntro String[]
-  validId       String[]
-  profile       String
-  verified      Boolean
-  user          User     @relation("UserProfile", fields: [userId], references: [id])
+  id      Int      @id @default(autoincrement())
+  userId  Int      @unique
+  bio     String[]
+  validId String[]
+  profile String
+  user    User     @relation("UserProfile", fields: [userId], references: [id])
 }
 
 model Message {

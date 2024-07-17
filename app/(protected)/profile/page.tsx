@@ -10,8 +10,11 @@ import {
 import Link from "next/link";
 import { Card, CardContent } from "@/registry/new-york/ui/card";
 import { Separator } from "@/registry/new-york/ui/seperator";
+import { getProfile } from "./_lib/actions";
 
-const Profile = () => {
+const Profile = async () => {
+  const profile = await getProfile();
+
   return (
     <ContentLayout title="Profile">
       <Breadcrumb>
@@ -39,6 +42,7 @@ const Profile = () => {
           <Separator />
           <h2>Edit Profile</h2>
         </CardContent>
+        <div></div>
       </Card>
     </ContentLayout>
   );

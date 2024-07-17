@@ -8,8 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { getUsers } from "./lib/actions";
-import { MessagesLayout } from "./components/MessageLayout";
+import { getUsers } from "./_lib/actions";
+import { MessagesLayout } from "./_components/MessageLayout";
 
 const DirectMessages = async () => {
   const users = await getUsers();

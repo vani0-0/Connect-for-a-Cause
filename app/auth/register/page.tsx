@@ -7,8 +7,8 @@ import Swal from "sweetalert2";
 import Link from "next/link";
 import { z } from "zod";
 
-import { RegisterValidationSchema } from "../lib/definitions";
-import { signup } from "../lib/actions";
+import { RegisterValidationSchema } from "../_lib/definitions";
+import { signup } from "../_lib/actions";
 import {
   Form,
   FormControl,

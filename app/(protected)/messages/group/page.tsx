@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { MessagesLayout } from "../components/MessageLayout";
+import { MessagesLayout } from "../_components/MessageLayout";
 
 const MessagesGroup = () => {
   return (

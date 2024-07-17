@@ -1,6 +1,6 @@
 "use server";
 
-import { verifySession } from "@/app/auth/lib/sessions";
+import { verifySession } from "@/app/auth/_lib/sessions";
 import prisma from "@/lib/prisma";
 import { User } from "@prisma/client";
 

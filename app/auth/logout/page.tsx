@@ -1,7 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { logout } from "../lib/actions";
+import { logout } from "../_lib/actions";
 
 import Swal from "sweetalert2";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";

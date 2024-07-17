@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import { z } from "zod";
-import { LoginValidationSchema } from "../lib/definitions";
-import { login } from "../lib/actions";
+import { LoginValidationSchema } from "../_lib/definitions";
+import { login } from "../_lib/actions";
 import { Input } from "@/components/ui/input";
 import {
   Form,
