@@ -1,5 +1,4 @@
 "use server";
-import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { jwtVerify, SignJWT } from "jose";
 import { SessionPayload } from "./definitions";
@@ -27,9 +26,6 @@ export async function decrypt(session: string | undefined = "") {
 
 export async function createSession(userId: number) {
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-  await prisma.session.create({
-    data: { expiresAt, userId },
-  });
 
   const session = await encrypt({ userId, expiresAt });
   cookies().set("session", session, {
