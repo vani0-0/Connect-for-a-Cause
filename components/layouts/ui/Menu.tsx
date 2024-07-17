@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Ellipsis, LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,7 +23,7 @@ interface MenuProps {
 export default function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
   const menuList = getMenuList(pathname);
-
+  const router = useRouter();
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
       <nav className="mt-8 h-full w-full">
@@ -108,7 +108,9 @@ export default function Menu({ isOpen }: MenuProps) {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
-                    onClick={() => {}}
+                    onClick={() => {
+                      router.push("/auth/logout");
+                    }}
                     variant="outline"
                     className="w-full justify-center h-10 mt-5"
                   >

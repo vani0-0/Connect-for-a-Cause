@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { jwtVerify, SignJWT } from "jose";
 import { SessionPayload } from "./definitions";
+import { redirect } from "next/navigation";
 
 const key = new TextEncoder().encode(process.env.JWT_SECRET);
 export async function encrypt(payload: SessionPayload) {
@@ -20,7 +21,6 @@ export async function decrypt(session: string | undefined = "") {
     });
     return payload;
   } catch (error) {
-    console.log("Failed to verify session");
     return null;
   }
 }
@@ -44,7 +44,30 @@ export async function createSession(userId: number) {
 export async function verifySession() {
   const cookie = cookies().get("session")?.value;
   const session = await decrypt(cookie);
-  console.log(session);
-  // return { isAuth: true, userId: Number(session?.sub) };
+
+  if (!session?.userId) {
+    redirect("/login");
+  }
+
+  return { isAuth: true, userId: Number(session.userId) };
 }
-export async function deleteSession() {}
+
+export async function updateSession() {
+  const session = cookies().get("sessoin")?.value;
+  const payload = await decrypt(session);
+
+  if (!session || !payload) return null;
+
+  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+  cookies().set("session", session, {
+    httpOnly: true,
+    secure: true,
+    expires: expires,
+    sameSite: "lax",
+    path: "/",
+  });
+}
+
+export async function deleteSession() {
+  cookies().delete("session");
+}

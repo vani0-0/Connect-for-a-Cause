@@ -2,7 +2,7 @@
 import prisma from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
 import * as bcrypt from "bcrypt";
-import { createSession } from "./sessions";
+import { createSession, deleteSession } from "./sessions";
 
 interface ApiResponse {
   success: boolean;
@@ -54,16 +54,23 @@ export async function login({
   try {
     const user = await prisma.user.findFirst({ where: { email: email } });
     if (!user) return { success: false, data: "user not found" };
-    console.log(user);
     if (!(await bcrypt.compare(password, user.password)))
       return { success: false, data: "incorrect email or password" };
     await createSession(user.id);
     return { success: true, data: user };
   } catch (error) {
+    console.log(error);
     return { success: false, data: error };
   }
 }
 
-export async function logout() {
+export async function logout(): Promise<ApiResponse> {
   await new Promise((resolve) => setTimeout(resolve, 3000));
+  try {
+    await deleteSession();
+    return { success: true, data: "logout succesfull" };
+  } catch (error) {
+    console.log(error);
+    return { success: false, data: error };
+  }
 }
