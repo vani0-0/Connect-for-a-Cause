@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
 model User{
@@ -15,13 +16,4 @@ model User{
   role String
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
-  sessions Session[]
-}
-
-model Session {
-  id Int @default(autoincrement()) @id
-  userId Int
-  expiresAt DateTime
-  
-  user User @relation(fields: [userId], references: [id])
 }
