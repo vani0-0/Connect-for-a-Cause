@@ -1,4 +1,3 @@
-import PlaceholderContent from "@/components/demo/placeholderLayout";
 import ContentLayout from "@/components/layouts/ContentLayout";
 import {
   Breadcrumb,
@@ -9,6 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { Card, CardContent } from "@/registry/new-york/ui/card";
+import { Separator } from "@/registry/new-york/ui/seperator";
 
 const Profile = () => {
   return (
@@ -30,7 +31,15 @@ const Profile = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent />
+      <Card>
+        <CardContent>
+          <div className="flex items-center px-4 py-2">
+            <h1 className="text-xl font-bold">Edit Profile</h1>
+          </div>
+          <Separator />
+          <h2>Edit Profile</h2>
+        </CardContent>
+      </Card>
     </ContentLayout>
   );
 };

@@ -1,4 +1,3 @@
-import PlaceholderContent from "@/components/demo/placeholderLayout";
 import ContentLayout from "@/components/layouts/ContentLayout";
 import {
   Breadcrumb,
@@ -9,8 +8,12 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { getUsers } from "./lib/actions";
+import { MessagesLayout } from "./components/MessageLayout";
 
-const DirectMessages = () => {
+const DirectMessages = async () => {
+  const users = await getUsers();
+
   return (
     <ContentLayout title="Messages">
       <Breadcrumb>
@@ -30,7 +33,14 @@ const DirectMessages = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent />
+      {users && (
+        <MessagesLayout
+          title="Direct Messages"
+          account={users}
+          messages={[]}
+          defaultLayout={[440, 655]}
+        />
+      )}
     </ContentLayout>
   );
 };

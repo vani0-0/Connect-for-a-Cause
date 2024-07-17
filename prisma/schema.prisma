@@ -3,17 +3,54 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model User{
-  id Int @default(autoincrement()) @id
-  name String
-  email String @unique
-  password String
-  role String
-  createdAt DateTime @default(now()) @map(name: "created_at")
-  updatedAt DateTime @updatedAt @map(name: "updated_at")
+model User {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  role             String
+  createdAt        DateTime  @default(now()) @map(name: "created_at")
+  updatedAt        DateTime  @updatedAt @map(name: "updated_at")
+  sentMessages     Message[] @relation("SentMessages")
+  receivedMessages Message[] @relation("ReceivedMessages")
+  profile          Profile?  @relation("UserProfile")
+}
+
+model Profile {
+  id            Int      @id @default(autoincrement())
+  bio           String?
+  userId        Int      @unique
+  personalIntro String[]
+  validId       String[]
+  profile       String
+  verified      Boolean
+  user          User     @relation("UserProfile", fields: [userId], references: [id])
+}
+
+model Message {
+  id          String   @id @default(uuid())
+  senderId    Int
+  recipientId Int
+  text        String
+  date        DateTime @default(now())
+  read        Boolean
+
+  attachments Attachment[]
+  sender      User         @relation("SentMessages", fields: [senderId], references: [id])
+  recipient   User         @relation("ReceivedMessages", fields: [recipientId], references: [id])
+}
+
+model Attachment {
+  id        String   @id @default(uuid())
+  messageId String
+  url       String
+  type      String
+  createdAt DateTime @default(now())
+
+  message Message @relation(fields: [messageId], references: [id])
 }

@@ -18,6 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 
 const Login = () => {
   const router = useRouter();
@@ -64,71 +65,71 @@ const Login = () => {
   }
 
   return (
-    <>
-      <h2 className="text-2xl font-semibold text-center mb-6">Welcome Back</h2>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="your<@email>.com" {...field} />
-                </FormControl>
-                <FormDescription>Enter your valid email</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <Card className="p-8 rounded-lg shadow-lg w-full max-w-md">
+      <CardTitle className="text-center mb-6">Welcome Back</CardTitle>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="your<@email>.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="********" {...field} type="password" />
-                </FormControl>
-                <FormDescription>Enter your password</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex items-center justify-end">
-            <div className="text-sm">
-              <Link
-                href="/auth/forgot-password"
-                className="font-medium text-blue-600 hover:text-blue-500"
-              >
-                Forgot your password?
-              </Link>
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="********" {...field} type="password" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex items-center justify-end">
+              <div className="text-sm">
+                <Link
+                  href="/auth/forgot-password"
+                  className="font-medium text-blue-600 hover:text-blue-500"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
             </div>
-          </div>
-          <div className="mt-6 mb-4">
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-out duration-300"
-            >
-              Sign in
-            </button>
-          </div>
-          <div className="flex items-center justify-center">
-            <div className="text-sm">
-              doesn&#39;t have an account?{" "}
-              <Link
-                href="/auth/register"
-                className="font-medium text-blue-600 hover:text-blue-500"
+            <div className="mt-6 mb-4">
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition ease-out duration-300"
               >
-                Register here
-              </Link>
+                Sign in
+              </button>
             </div>
-          </div>
-        </form>
-      </Form>
-    </>
+            <div className="flex items-center justify-center">
+              <div className="text-sm">
+                doesn&#39;t have an account?{" "}
+                <Link
+                  href="/auth/register"
+                  className="font-medium text-blue-600 hover:text-blue-500"
+                >
+                  Register here
+                </Link>
+              </div>
+            </div>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 

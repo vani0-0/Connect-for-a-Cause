@@ -1,4 +1,3 @@
-import PlaceholderContent from "@/components/demo/placeholderLayout";
 import ContentLayout from "@/components/layouts/ContentLayout";
 import {
   Breadcrumb,
@@ -9,6 +8,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { MessagesLayout } from "../components/MessageLayout";
 
 const MessagesGroup = () => {
   return (
@@ -36,7 +36,12 @@ const MessagesGroup = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <PlaceholderContent />
+      <MessagesLayout
+        title="Group Messages"
+        account={[]}
+        messages={[]}
+        defaultLayout={[440, 655]}
+      />
     </ContentLayout>
   );
 };

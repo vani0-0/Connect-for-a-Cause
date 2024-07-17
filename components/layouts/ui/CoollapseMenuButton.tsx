@@ -37,7 +37,7 @@ interface CollapseMenuButtonProps {
   icon: LucideIcon;
   label: string;
   active: boolean;
-  submenus: Submenu[];
+  submenus: Array<Submenu>;
   isOpen: boolean | undefined;
 }
 
