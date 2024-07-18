@@ -27,7 +27,7 @@ model Profile {
   userId  Int      @unique
   bio     String[]
   validId String[]
-  profile String
+  profile String?
   user    User     @relation("UserProfile", fields: [userId], references: [id])
 }
 

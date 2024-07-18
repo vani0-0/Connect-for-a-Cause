@@ -8,9 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import { Card, CardContent } from "@/registry/new-york/ui/card";
-import { Separator } from "@/registry/new-york/ui/seperator";
 import { getProfile } from "./_lib/actions";
+import ProfileLayout from "./_components/ProfileLayout";
 
 const Profile = async () => {
   const profile = await getProfile();
@@ -34,16 +33,7 @@ const Profile = async () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <Card>
-        <CardContent>
-          <div className="flex items-center px-4 py-2">
-            <h1 className="text-xl font-bold">Edit Profile</h1>
-          </div>
-          <Separator />
-          <h2>Edit Profile</h2>
-        </CardContent>
-        <div></div>
-      </Card>
+      <ProfileLayout profile={profile} />
     </ContentLayout>
   );
 };

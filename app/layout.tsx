@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/themeProvider";
-
+import NextTopLoader from "nextjs-toploader";
 const poppins = Poppins({
   weight: ["200", "400", "600", "800"],
   subsets: ["latin"],
@@ -20,6 +20,7 @@ export default async function LocaleLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.className}`}>
+        <NextTopLoader height={4} />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

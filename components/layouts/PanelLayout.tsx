@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useStore } from "zustand";
 import Sidebar from "./ui/Sidebar";
 import Footer from "./ui/Footer";
+import { Toaster } from "sonner";
 
 export default function PanelLayout({
   children,
@@ -17,6 +18,7 @@ export default function PanelLayout({
 
   return (
     <>
+      <Toaster />
       <Sidebar />
       <main
         className={cn(
